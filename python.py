@@ -8,7 +8,7 @@ import cv2  #验证码识别
 
 path = './' + get_dict['classnum'] + '.jpg'  # 存放验证码路径
 driver.find_element_by_xpath("//*[ @ id = 'fm1'] / div[4] / img").screenshot(path)
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cnocr 
+
 #创建一个识别函数
 def recognize(picture_path):  #参数为要识别验证码图片的路径
     ocr = CnOcr()  
