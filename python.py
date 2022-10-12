@@ -3,6 +3,23 @@ import requests as r
 from lxml import etree
 import time
 from time import sleep
+from cnocr import CnOcr  # 数字识别
+import cv2  #验证码识别
+
+path = './' + get_dict['classnum'] + '.jpg'  # 存放验证码路径
+driver.find_element_by_xpath("//*[ @ id = 'fm1'] / div[4] / img").screenshot(path)
+
+#创建一个识别函数
+def recognize(picture_path):  #参数为要识别验证码图片的路径
+    ocr = CnOcr()  
+    res = ocr.ocr_for_single_line(picture_path)  # 识别单行的验证码，这是比较多行验证码来说
+    #得到的验证码为字典类型，所以下面是将验证码从中提取出来的过程
+    re = tuple(res)
+    r = re[0]
+    k = [str(i) for i in r]
+    s2 = ''.join(k)
+    return s2
+
 
 a, b, c, d, e, f, z = '', '', '', '', '', '', ''
 timetamp = time.mktime(time.localtime())
